@@ -1,10 +1,14 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router';
-import {  createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from '../firebase/firebase.config';
+
+
 import Swal from 'sweetalert2';
+import { valueContext } from '../Root/Root';
 
 const SignUp = () => {
+    const {handleSignUp}=useContext(valueContext)
+
+
     const handleSubmit=(e)=>{
         e.preventDefault();
        const name =e.target.name.value;
@@ -13,7 +17,36 @@ const SignUp = () => {
        const password=e.target.password.value;
        console.log(name,photo)
 
-        createUserWithEmailAndPassword(auth,email,password)
+       if(password.length < 6){
+        Swal.fire({
+  icon: "error",
+  title: "Oops...",
+  text: "Password must be 6 character!",
+  footer: '<a href="#">Why do I have this issue?</a>'
+});
+        
+        return
+       }
+       if(!/[a-z]/.test(password)){
+        Swal.fire({
+  icon: "error",
+  title: "Oops...",
+  text: "password must contain a lowercase!",
+  footer: '<a href="#">Why do I have this issue?</a>'
+});
+        return
+       }
+       if(!/[A-Z]/.test(password)){
+       Swal.fire({
+  icon: "error",
+  title: "Oops...",
+  text: "password contain must be a upper case!",
+  footer: '<a href="#">Why do I have this issue?</a>'
+});
+        return
+       }
+
+        handleSignUp(email,password)
         .then((userCredential) => {
     
     const user = userCredential.user;

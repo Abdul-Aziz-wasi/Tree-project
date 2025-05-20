@@ -1,12 +1,38 @@
-import React from 'react';
+
+import React, { useContext } from 'react';
 import { NavLink } from 'react-router';
 
+import { valueContext } from '../Root/Root';
+import Swal from 'sweetalert2';
+
 const Login = () => {
+    const {handleLogin} =useContext(valueContext)
+
+
     const handleSubmit =(e)=>{
         e.preventDefault();
         const email =e.target.email.value;
         const password=e.target.password.value;
         console.log(email,password)
+        handleLogin(email,password)
+         .then((userCredential) => {
+    
+    const user = userCredential.user;
+    console.log(user)
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Sign In successfull",
+        showConfirmButton: false,
+        timer: 1500
+        });
+   
+  })
+  .catch((error) => {
+    console.log(error)
+  });
+
+       
     }
     return (
      <div className="w-full max-w-md mx-auto p-4 rounded-md shadow sm:p-8 my-4 bg-black text-white">
