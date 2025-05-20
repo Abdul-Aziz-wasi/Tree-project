@@ -1,7 +1,10 @@
 import React from 'react';
-import { NavLink } from 'react-router';
+import { NavLink, useLocation, useNavigate } from 'react-router';
 
 const Navbar = () => {
+    const navigate =useNavigate()
+    const {pathname} =useLocation()
+    
     return (
       <header className="p-4 dark:bg-gray-100 dark:text-gray-800">
 	<div className="container flex justify-between h-16 mx-auto">
@@ -11,21 +14,22 @@ const Navbar = () => {
 		</NavLink>
 		<ul className="items-stretch hidden space-x-3 lg:flex">
 			<li className="flex">
-				<NavLink to="/"  className="flex items-center px-4 -mb-1  dark:border- dark:text-violet-600 dark:border-violet-600">Home</NavLink>
+				<NavLink to="/"  className="flex items-center px-4 -mb-1  ">Home</NavLink>
 			</li>
 			<li className="flex">
-				<NavLink to='/allplants' className="flex items-center px-4 -mb-1  dark:border-">All Plants</NavLink>
+				<NavLink to='/allplants' className="flex items-center px-4 -mb-1 ">All Plants</NavLink>
 			</li>
 			<li className="flex">
-				<NavLink to='/addplants' className="flex items-center px-4 -mb-1  dark:border-">Add plants</NavLink>
+				<NavLink to='/addplants' className="flex items-center px-4 -mb-1 
+                ">Add plants</NavLink>
 			</li>
 			<li className="flex">
-				<NavLink to='/myplants' className="flex items-center px-4 -mb-1 dark:border-">My Plants</NavLink>
+				<NavLink to='/myplants' className="flex items-center px-4 -mb-1 ">My Plants</NavLink>
 			</li>
 		</ul>
 		<div className="items-center flex-shrink-0 hidden lg:flex">
-			<button className="self-center px-8 py-3 rounded">Sign in</button>
-			<button className="self-center px-8 py-3 font-semibold rounded dark:bg-violet-600 dark:text-gray-50">Sign up</button>
+			<button onClick={()=>navigate('/login')} className={`self-center px-8 py-3 rounded ${pathname =='/login'?"text-blue-600":""}`}>Sign in</button>
+			<button onClick={()=>navigate('/signup')}className={`self-center px-8 py-3 rounded ${pathname =="/signup"?"text-blue-600":""}`}>Sign up</button>
 		</div>
 		<button className="p-4 lg:hidden">
 			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 dark:text-gray-800">
