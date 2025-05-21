@@ -17,8 +17,10 @@ const Login = () => {
         handleLogin(email,password)
          .then((userCredential) => {
     
-    const user = userCredential.user;
-    console.log(user)
+    const currentUser = userCredential.user;
+    console.log(currentUser)
+   
+    
       Swal.fire({
         position: "top-end",
         icon: "success",

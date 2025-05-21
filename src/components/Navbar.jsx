@@ -1,15 +1,18 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { NavLink, useLocation, useNavigate } from 'react-router';
+import { valueContext } from '../Root/Root';
 
 const Navbar = () => {
     const navigate =useNavigate()
     const {pathname} =useLocation()
+
+    const {handleSignOut}=useContext(valueContext)
     
     return (
       <header className="p-4 dark:bg-gray-100 dark:text-gray-800">
 	<div className="container flex justify-between h-16 mx-auto">
 		<NavLink  aria-label="Back to homepage" className="flex items-center p-2">
-            <p className='text-green-700 font-bold text-2xl'>Trees</p>
+            <p className='text-green-700 font-bold text-2xl'>Planting</p>
 		
 		</NavLink>
 		<ul className="items-stretch hidden space-x-3 lg:flex">
@@ -30,6 +33,7 @@ const Navbar = () => {
 		<div className="items-center flex-shrink-0 hidden lg:flex">
 			<button onClick={()=>navigate('/login')} className={`self-center px-8 py-3 rounded ${pathname =='/login'?"text-blue-600":""}`}>Sign in</button>
 			<button onClick={()=>navigate('/signup')}className={`self-center px-8 py-3 rounded ${pathname =="/signup"?"text-blue-600":""}`}>Sign up</button>
+			<button onClick={handleSignOut} className={`self-center px-8 py-3 rounded ${pathname =="/"?"text-blue-600":""}`}>Sign out</button>
 		</div>
 		<button className="p-4 lg:hidden">
 			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 dark:text-gray-800">

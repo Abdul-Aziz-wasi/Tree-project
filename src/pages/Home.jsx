@@ -1,10 +1,13 @@
 import React from 'react';
+import Hero from '../components/Hero';
+import NewPlant from '../components/NewPlant';
 
 const Home = () => {
     return (
-        <div>
-            home
-        </div>
+      <div>
+        <Hero></Hero>
+        <NewPlant></NewPlant>
+      </div>
     );
 };
 
