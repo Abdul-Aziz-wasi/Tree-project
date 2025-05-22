@@ -5,7 +5,7 @@ const Hero = () => {
        <div className="carousel flex w-11/12 mx-auto h-100">
   <div id="slide1" className="carousel-item relative w-full">
     <img 
-      src="https://i.ibb.co/bjvnBXtz/trees4.jpg"
+      src="https://i.ibb.co/LdBgRTnY/trees7.jpg.jpg"
       className="w-full" />
     <div className="absolute left-5 right-5 top-1/2 flex -translate-y-1/2 transform justify-between">
       <a href="#slide4" className="btn btn-circle">❮</a>

@@ -17,10 +17,12 @@ export const router = createBrowserRouter([
     children:[
         {
             path:'/',
+            loader:()=>fetch('http://localhost:3000/trees'),
             Component:Home
         },
         {
             path:'allplants',
+            loader:()=>fetch('http://localhost:3000/trees'),
             Component:AllPlants
         },
         {

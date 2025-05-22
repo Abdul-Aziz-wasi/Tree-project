@@ -1,8 +1,11 @@
 import React from 'react';
+import 'react-day-picker/dist/style.css';
 import "cally";
+import Swal from 'sweetalert2';
 
 
 const AddPlant = () => {
+
      const handleAddTree =(e)=>{
         e.preventDefault()
         const form =e.target;
@@ -19,14 +22,24 @@ const AddPlant = () => {
         })
         .then(res=>res.json())
         .then(data=>{
-            console.log(data)
+            if(data.insertedId){
+                 Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: "Added successfully",
+                        showConfirmButton: false,
+                        timer: 1500
+                        });
+                        form.reset()
+            }
+            
         })
      }
 
     return (
         <div className='p-8'>
-           <div className='p-4 text-center text-green-600'>
-            <h1 className='text-6xl font-bold'>Add plants</h1>
+           <div className='p-4 text-center text-green-800'>
+            <h1 className='text-6xl font-bold'>Add Plants</h1>
            </div>
            <form onSubmit={handleAddTree}>
             <div className='p-12 grid grid-cols-1 md:grid-cols-2 gap-6'>
@@ -69,34 +82,16 @@ const AddPlant = () => {
     </fieldset>
 
 
+                    
                     <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
-    <label className="label">Last Watered Date </label>
-    {/*
-* Import Cally web component from CDN
-<script type="module" src="https://unpkg.com/cally"></script>
-
-* Or install as a dependency:
-npm i cally
-* and import it in JS
-import "cally";
-*/}
-
-{/* <button popoverTarget="cally-popover1" className="input input-border" id="cally1" style="anchorName:--cally1">
-  Pick a date
-</button>
-<div popover id="cally-popover1" className="dropdown bg-base-100 rounded-box shadow-lg" style="positionAnchor:--cally1">
-  <calendar-date class="cally" onchange={document.getElementById('cally1').innerText = this.value}>
-    <svg aria-label="Previous" className="fill-current size-4" slot="previous" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M15.75 19.5 8.25 12l7.5-7.5"></path></svg>
-    <svg aria-label="Next" className="fill-current size-4" slot="next" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m8.25 4.5 7.5 7.5-7.5 7.5"></path></svg>
-    <calendar-month></calendar-month>
-  </calendar-date>
-</div> */}
+    <label className="label">last watering date</label>
+    <input type="date" name="data" className="input w-full" placeholder="plant name" />
     </fieldset>
 
 
                     <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
     <label className="label">Next Watering Date</label>
-    <input type="text"  name="next" className="input w-full" placeholder="next watering" />
+    <input type="date"  name="data" className="input w-full" placeholder="next watering" />
     </fieldset>
                     <fieldset className="fieldset bg-base-200 border-base-300 rounded-box border p-4">
     <label className="label">Health Status</label>
@@ -112,7 +107,7 @@ import "cally";
     </fieldset>
                     
             </div>
-            <input type="submit" value="Add tree" className='btn w-full'/>
+            <input type="submit" value="Add tree" className='btn w-full bg-green-800 text-white'/>
            </form>
         </div>
     );
