@@ -1,5 +1,5 @@
 import React, { createContext, useEffect, useState } from 'react';
-import { Outlet } from 'react-router';
+import { Outlet  } from 'react-router';
 import Navbar from '../components/Navbar';
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
 import { auth } from '../firebase/firebase.config';
@@ -7,11 +7,14 @@ export const valueContext = createContext();
 
 const Root = () => {
     const [user ,setUser]=useState(null)
-    console.log(user)
+    const [loading,setLoading]=useState()
+   
+   
 
     const handleLogin =(email,password)=>{
        
         return  signInWithEmailAndPassword(auth, email, password)
+       
     }
 
     const handleSignUp =(email,password)=>{
@@ -34,12 +37,14 @@ const Root = () => {
         handleSignUp,
         setUser,
         user,
+        loading,
         handleSignOut
     }
     useEffect(()=>{
        const unsubscribe= onAuthStateChanged(auth, (currentUser) => {
             
             setUser(currentUser)
+            setLoading(false)
 //   if (currentUser) {
 //     // User is signed in, see docs for a list of available properties
 //     // https://firebase.google.com/docs/reference/js/auth.user

@@ -1,12 +1,20 @@
 
 import React, { useContext } from 'react';
-import { NavLink } from 'react-router';
+import { NavLink,  useLocation,  useNavigate } from 'react-router';
 
 import { valueContext } from '../Root/Root';
 import Swal from 'sweetalert2';
 
 const Login = () => {
     const {handleLogin} =useContext(valueContext)
+	const navigate =useNavigate()
+
+	 const location=useLocation()
+    const from =location.state.from
+	console.log(location)
+    
+
+	
 
 
     const handleSubmit =(e)=>{
@@ -16,9 +24,11 @@ const Login = () => {
         console.log(email,password)
         handleLogin(email,password)
          .then((userCredential) => {
+			 navigate(from)
     
     const currentUser = userCredential.user;
-    console.log(currentUser)
+	console.log(currentUser)
+   
    
     
       Swal.fire({
@@ -71,7 +81,7 @@ const Login = () => {
 				<input type="password" name="password" id="password" placeholder="*****" className="w-full px-3 py-2 border rounded-md " />
 			</div>
 		</div>
-		<button type="submit" className="w-full px-8 py-3 font-semibold rounded-md ">Sign in</button>
+		<button onClick={()=>navigate('/')} type="submit" className="w-full px-8 py-3 font-semibold rounded-md ">Sign in</button>
 	</form>
 </div>
     );

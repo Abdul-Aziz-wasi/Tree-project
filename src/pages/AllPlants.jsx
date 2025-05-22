@@ -1,11 +1,12 @@
 // import React, { useState } from 'react';
-import { useLoaderData } from 'react-router';
+import { useLoaderData, useNavigate } from 'react-router';
 import TreesTable from '../components/TreesTable';
 
 const AllPlants = () => {
+   const navigate =useNavigate()
      const trees =useLoaderData();
     //  const [tree, setTree] =useState()
-     console.log(trees)
+    
     return (
         <div className='p-8'>
             <div>
@@ -46,7 +47,7 @@ const AllPlants = () => {
         </td>
         <td>{tree.health}</td>
         <th>
-          <button className="btn btn-primary  btn-xs">View details</button>
+          <button onClick={()=>navigate(`/details/${tree._id}`)} className="btn btn-primary  btn-xs">View details</button>
         </th>
       </tr>)
    }

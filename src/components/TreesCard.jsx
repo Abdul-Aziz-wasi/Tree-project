@@ -1,6 +1,12 @@
 import React from 'react';
+import { useLoaderData, useNavigate } from 'react-router';
+
 
 const TreesCard = ({tree}) => {
+  const navigate =useNavigate()
+       const trees =useLoaderData();
+       console.log(trees)
+ 
     const {image,health ,name,category}=tree
     return (
       <div className="card card-side bg-base-100 shadow-sm border-2 border-green-800 p-4">
@@ -16,7 +22,7 @@ const TreesCard = ({tree}) => {
     <p>Health : {health}</p>
     </div>
     <div className="pt-12 justify-end">
-      <button className="btn btn-primary">View Details</button>
+      <button onClick={()=>navigate(`/details/${tree._id}`)}   className="btn btn-primary ">Details</button>
     </div>
   </div>
 </div>

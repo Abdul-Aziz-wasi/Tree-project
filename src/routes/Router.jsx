@@ -9,6 +9,8 @@ import AddPlant from "../pages/AddPlant";
 import MyPlants from "../pages/MyPlants";
 import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
+import Details from "../components/Details";
+import PrivateRoute from "../components/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -27,11 +29,16 @@ export const router = createBrowserRouter([
         },
         {
             path:'addplants',
-            Component:AddPlant
+            element:<PrivateRoute>
+                <AddPlant></AddPlant>
+            </PrivateRoute>
         },
         {
             path:'myplants',
-            Component:MyPlants
+            loader:()=>fetch('http://localhost:3000/trees'),
+            element:<PrivateRoute>
+                <MyPlants></MyPlants>
+            </PrivateRoute>
         },
         {
             path:'login',
@@ -40,6 +47,11 @@ export const router = createBrowserRouter([
         {
             path:'signup',
             Component:SignUp
+        },
+        {
+            path:'/details/:id',
+            loader:()=>fetch('http://localhost:3000/trees'),
+            Component:Details
         }
     ] 
   },
