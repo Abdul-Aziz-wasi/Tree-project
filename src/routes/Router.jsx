@@ -11,11 +11,17 @@ import Login from "../pages/Login";
 import SignUp from "../pages/SignUp";
 import Details from "../components/Details";
 import PrivateRoute from "../components/PrivateRoute";
+import ErrorElement from "../components/ErrorElement";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     Component:Root,
+     hydrateFallbackElement: <div className='items-center w-full mx-auto pt-4'><span className="loading loading-bars loading-xs"></span>
+     <span className="loading loading-bars loading-sm"></span>
+     <span className="loading loading-bars loading-md"></span>
+     </div>,
+     errorElement:<ErrorElement></ErrorElement>,
     children:[
         {
             path:'/',

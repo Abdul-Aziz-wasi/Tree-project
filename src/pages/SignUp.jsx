@@ -1,12 +1,16 @@
 import React, { useContext } from 'react';
-import { NavLink } from 'react-router';
+import { NavLink, useLocation, useNavigate } from 'react-router';
 
 
 import Swal from 'sweetalert2';
 import { valueContext } from '../Root/Root';
 
 const SignUp = () => {
-    const {handleSignUp}=useContext(valueContext)
+    const {handleSignUp,updateUser,setUser}=useContext(valueContext)
+    const navigate =useNavigate()
+
+	 const location=useLocation()
+    const from =location?.state?.from
 
 
     const handleSubmit=(e)=>{
@@ -48,8 +52,15 @@ const SignUp = () => {
 
         handleSignUp(email,password)
         .then((userCredential) => {
-    
+    updateUser({displayName:name, photoUrl:photo}).then(()=>{
+      setUser({...user, displayName:name, photoUrl:photo})
+    }).catch((error)=>{
+      console.log(error)
+      setUser(user)
+
+    })
     const user = userCredential.user;
+    navigate(from?from:"/")
     console.log(user);
 
         Swal.fire({

@@ -6,7 +6,9 @@ const Navbar = () => {
     const navigate =useNavigate()
     const {pathname} =useLocation()
 
-    const {handleSignOut}=useContext(valueContext)
+    const {handleSignOut,user}=useContext(valueContext)
+	console.log(user)
+	
     
     return (
       <header className="p-4 dark:bg-gray-100 dark:text-gray-800">
@@ -30,10 +32,16 @@ const Navbar = () => {
 				<NavLink to='/myplants' className="flex items-center px-4 -mb-1 ">My Plants</NavLink>
 			</li>
 		</ul>
-		<div className="items-center flex-shrink-0 hidden lg:flex">
-			<button onClick={()=>navigate('/login')} className={`self-center px-8 py-3 rounded ${pathname =='/login'?"text-blue-600":""}`}>Sign in</button>
-			<button onClick={()=>navigate('/signup')}className={`self-center px-8 py-3 rounded ${pathname =="/signup"?"text-blue-600":""}`}>Sign up</button>
-			<button onClick={handleSignOut} className={`self-center px-8 py-3 rounded ${pathname =="/"?"text-blue-600":""}`}>Sign out</button>
+		<div className="items-center flex-shrink-0 pt-2 lg:flex">
+			<div className='text-red-500 hidden lg:flex'>{user && user.email}</div>
+			
+
+			{
+				user ? <button onClick={handleSignOut} className={`self-center px-8 py-3 rounded ${pathname =="/"?"text-blue-600":""}`}>Sign out</button>: <button onClick={()=>navigate('/login')} className={`self-center px-8 py-3 rounded ${pathname =='/login'?"text-blue-600":""}`}>Sign in</button>
+			}
+			
+			{/* <button onClick={()=>navigate('/signup')}className={`self-center px-8 py-3 rounded ${pathname =="/signup"?"text-blue-600":""}`}>Sign up</button> */}
+			
 		</div>
 		<button className="p-4 lg:hidden">
 			<svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor" className="w-6 h-6 dark:text-gray-800">

@@ -107,7 +107,7 @@ const AddPlant = () => {
     </fieldset>
                     
             </div>
-            <input type="submit" value="Add tree" className='btn w-full bg-green-800 text-white'/>
+            <input type="submit" value="Add Plant" className='btn w-full bg-green-800 text-white'/>
            </form>
         </div>
     );

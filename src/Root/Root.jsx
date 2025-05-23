@@ -1,8 +1,10 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { Outlet  } from 'react-router';
 import Navbar from '../components/Navbar';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut } from 'firebase/auth';
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
 import { auth } from '../firebase/firebase.config';
+import Swal from 'sweetalert2';
+import Footer from '../components/Footer';
 export const valueContext = createContext();
 
 const Root = () => {
@@ -21,9 +23,21 @@ const Root = () => {
        return createUserWithEmailAndPassword(auth,email,password)
 
     }
+
+    const updateUser =(updatedData)=>{
+        return updateProfile(auth.currentUser,updatedData)
+
+    }
     
     const handleSignOut =()=>{
         signOut(auth).then(() => {
+             Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Sign out successfull",
+                showConfirmButton: false,
+                timer: 1500
+                });
   // Sign-out successful.
 }).catch((error) => {
     console.log(error)
@@ -38,7 +52,8 @@ const Root = () => {
         setUser,
         user,
         loading,
-        handleSignOut
+        handleSignOut,
+        updateUser
     }
     useEffect(()=>{
        const unsubscribe= onAuthStateChanged(auth, (currentUser) => {
@@ -64,6 +79,7 @@ return ()=>{
            <valueContext.Provider value={contextValue}>
              <Navbar></Navbar>
             <Outlet></Outlet>
+            <Footer></Footer>
            </valueContext.Provider>
         </div>
     );

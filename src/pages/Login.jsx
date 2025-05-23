@@ -10,7 +10,7 @@ const Login = () => {
 	const navigate =useNavigate()
 
 	 const location=useLocation()
-    const from =location.state.from
+    const from =location?.state?.from
 	console.log(location)
     
 
@@ -24,7 +24,7 @@ const Login = () => {
         console.log(email,password)
         handleLogin(email,password)
          .then((userCredential) => {
-			 navigate(from)
+			 navigate(from?from:"/")
     
     const currentUser = userCredential.user;
 	console.log(currentUser)
@@ -81,7 +81,7 @@ const Login = () => {
 				<input type="password" name="password" id="password" placeholder="*****" className="w-full px-3 py-2 border rounded-md " />
 			</div>
 		</div>
-		<button onClick={()=>navigate('/')} type="submit" className="w-full px-8 py-3 font-semibold rounded-md ">Sign in</button>
+		<button  type="submit" className="w-full px-8 py-3 font-semibold rounded-md ">Sign in</button>
 	</form>
 </div>
     );
