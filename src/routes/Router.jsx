@@ -25,12 +25,12 @@ export const router = createBrowserRouter([
     children:[
         {
             path:'/',
-            loader:()=>fetch('http://localhost:3000/trees'),
+            loader:()=>fetch('https://mango-server-p4j3q1uz8-abdul-azizs-projects-9f179af7.vercel.app/trees'),
             Component:Home
         },
         {
             path:'allplants',
-            loader:()=>fetch('http://localhost:3000/trees'),
+            loader:()=>fetch('https://mango-server-p4j3q1uz8-abdul-azizs-projects-9f179af7.vercel.app/trees'),
             Component:AllPlants
         },
         {
@@ -41,7 +41,7 @@ export const router = createBrowserRouter([
         },
         {
             path:'myplants',
-            loader:()=>fetch('http://localhost:3000/trees'),
+            loader:()=>fetch('https://mango-server-p4j3q1uz8-abdul-azizs-projects-9f179af7.vercel.app/trees'),
             element:<PrivateRoute>
                 <MyPlants></MyPlants>
             </PrivateRoute>
@@ -56,7 +56,7 @@ export const router = createBrowserRouter([
         },
         {
             path:'/details/:id',
-            loader:()=>fetch('http://localhost:3000/trees'),
+            loader:()=>fetch('https://mango-server-p4j3q1uz8-abdul-azizs-projects-9f179af7.vercel.app/trees'),
             Component:Details
         }
     ] 

@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
-.active{
-    color: blue;
-}
+
+@custom-variant dark (&:where(.dark, .dark *));

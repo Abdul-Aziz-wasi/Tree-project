@@ -52,14 +52,11 @@ const SignUp = () => {
 
         handleSignUp(email,password)
         .then((userCredential) => {
-    updateUser({displayName:name, photoUrl:photo}).then(()=>{
-      setUser({...user, displayName:name, photoUrl:photo})
-    }).catch((error)=>{
-      console.log(error)
-      setUser(user)
+          
+    updateUser(name,photo)
 
-    })
     const user = userCredential.user;
+    setUser(user)
     navigate(from?from:"/")
     console.log(user);
 

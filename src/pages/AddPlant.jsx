@@ -13,7 +13,7 @@ const AddPlant = () => {
         const newTree =Object.fromEntries(formData.entries());
         console.log(newTree);
 
-        fetch('http://localhost:3000/trees',{
+        fetch('https://mango-server-p4j3q1uz8-abdul-azizs-projects-9f179af7.vercel.app/trees',{
             method:'POST',
             headers:{
                 'content-type':'application/json'

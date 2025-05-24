@@ -5,6 +5,7 @@ import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndP
 import { auth } from '../firebase/firebase.config';
 import Swal from 'sweetalert2';
 import Footer from '../components/Footer';
+import { ThemeProvider } from '../context/ThemeContext';
 export const valueContext = createContext();
 
 const Root = () => {
@@ -24,10 +25,12 @@ const Root = () => {
 
     }
 
-    const updateUser =(updatedData)=>{
-        return updateProfile(auth.currentUser,updatedData)
-
-    }
+    const updateUser = (name, photoURL) => {
+    return updateProfile(auth.currentUser, {
+      displayName: name,
+      photoURL,
+    });
+  };
     
     const handleSignOut =()=>{
         signOut(auth).then(() => {
@@ -76,11 +79,15 @@ return ()=>{
     },[])
     return (
         <div >
-           <valueContext.Provider value={contextValue}>
-             <Navbar></Navbar>
+         
+            <valueContext.Provider value={contextValue}>
+            <ThemeProvider>
+                 <Navbar></Navbar>
             <Outlet></Outlet>
             <Footer></Footer>
+            </ThemeProvider>
            </valueContext.Provider>
+          
         </div>
     );
 };
