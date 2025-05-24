@@ -60,7 +60,7 @@ const Navbar = () => {
 				user ? <button onClick={handleSignOut} className={`self-center px-8 py-3 rounded ${pathname =="/"?"text-blue-600":""}`}>Sign out</button>: <button onClick={()=>navigate('/login')} className={`self-center px-8 py-3 rounded ${pathname =='/login'?"text-blue-600":""}`}>Sign in</button>
 			}
 			
-			<button onClick={()=>navigate('/signup')}className={`self-center px-8 py-3 rounded ${pathname =="/signup"?"text-blue-600":""}`}>Sign up</button>
+			{/* <button onClick={()=>navigate('/signup')}className={`self-center px-8 py-3 rounded ${pathname =="/signup"?"text-blue-600":""}`}>Sign up</button> */}
 			<div>
 				 <label className="swap swap-rotate">
   {/* this hidden checkbox controls the state */}
