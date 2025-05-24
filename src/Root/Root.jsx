@@ -1,12 +1,14 @@
 import React, { createContext, useEffect, useState } from 'react';
 import { Outlet  } from 'react-router';
 import Navbar from '../components/Navbar';
-import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword, signOut, updateProfile } from 'firebase/auth';
+import { createUserWithEmailAndPassword, GoogleAuthProvider, onAuthStateChanged, signInWithEmailAndPassword, signInWithPopup, signOut, updateProfile } from 'firebase/auth';
 import { auth } from '../firebase/firebase.config';
 import Swal from 'sweetalert2';
 import Footer from '../components/Footer';
-import { ThemeProvider } from '../context/ThemeContext';
+
 export const valueContext = createContext();
+
+const googleProvider =new GoogleAuthProvider()
 
 const Root = () => {
     const [user ,setUser]=useState(null)
@@ -31,6 +33,10 @@ const Root = () => {
       photoURL,
     });
   };
+
+  const googleLogin=()=>{
+    signInWithPopup(auth, googleProvider)
+  }
     
     const handleSignOut =()=>{
         signOut(auth).then(() => {
@@ -55,6 +61,7 @@ const Root = () => {
         setUser,
         user,
         loading,
+        googleLogin,
         handleSignOut,
         updateUser
     }
@@ -81,11 +88,11 @@ return ()=>{
         <div >
          
             <valueContext.Provider value={contextValue}>
-            <ThemeProvider>
+            
                  <Navbar></Navbar>
             <Outlet></Outlet>
-            <Footer></Footer>
-            </ThemeProvider>
+            <Footer></Footer>.
+           
            </valueContext.Provider>
           
         </div>

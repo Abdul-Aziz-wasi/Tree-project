@@ -1,18 +1,19 @@
 import React from 'react';
-import { useDarkMode } from '../context/ThemeContext';
+
+import { format } from 'date-fns';
+import Marquee from 'react-fast-marquee';
 
 const DarkMode = () => {
-    const darkMode =false;
-    const{dark, setDark}= useDarkMode()
+    
     return (
-        <div className=' flex justify-center mb-4'>
+        <div className=' flex justify-end my-4 w-11/12 mx-auto bg-gray-300'>
 
             
-            <button onClick={()=>setDark(!dark)} className='btn bg-gray-400 dark:bg-gray-900 dark:text-white'>
-                {
-                    darkMode? "Light mode":"Dark mode"
-                }
-            </button>
+           <Marquee>
+             <p className=' font-semibold'>Today : {format(new Date(),"EEEE, MMMM dd ,yyyy")}</p>
+           </Marquee>
+
+           
         </div>
     );
 };

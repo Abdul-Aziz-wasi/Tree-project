@@ -17,7 +17,7 @@ export const router = createBrowserRouter([
   {
     path: "/",
     Component:Root,
-     hydrateFallbackElement: <div className='items-center w-full mx-auto pt-4'><span className="loading loading-bars loading-xs"></span>
+     hydrateFallbackElement: <div className='flex items-center w-full mx-auto pt-4'><span className="loading loading-bars loading-xs"></span>
      <span className="loading loading-bars loading-sm"></span>
      <span className="loading loading-bars loading-md"></span>
      </div>,
