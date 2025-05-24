@@ -2,4 +2,7 @@
 @plugin "daisyui";
 
 
-@custom-variant dark (&:where(.dark, .dark *));
+.active{
+    color: blue;
+}
+
