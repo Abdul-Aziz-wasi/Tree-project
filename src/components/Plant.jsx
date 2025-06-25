@@ -24,6 +24,7 @@ const Plant = ({tree}) => {
       text: "Your file has been deleted.",
       icon: "success"
     });
+    
   }
 });
 
