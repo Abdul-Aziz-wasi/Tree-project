@@ -1,65 +1,70 @@
-// import React, { useState } from 'react';
-import { useLoaderData, useNavigate } from 'react-router';
-import TreesTable from '../components/TreesTable';
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const AllPlants = () => {
-   const navigate =useNavigate()
-     const trees =useLoaderData();
-    //  const [tree, setTree] =useState()
-    
-    return (
-        <div className='p-8'>
-            <div>
-                <div className="overflow-x-auto">
-  <table className="table">
-    {/* head */}
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th>Wtering</th>
-        <th>Health</th>
-        <th></th>
-      </tr>
-    </thead>
-    <tbody>
-      {/* row 1 */}
-   {
-    trees.map(tree=>   <tr key={tree._id}>
-        <td>
-          <div className="flex items-center gap-3">
-            <div className="avatar">
-              <div className="mask mask-squircle h-12 w-12">
-                <img
-                  src={tree.image}
-                  alt="Avatar Tailwind CSS Component" />
-              </div>
-            </div>
-            <div>
-              <div className="font-bold">{tree.name}</div>
-              <div className="text-sm opacity-50">{tree.category}</div>
-            </div>
+  const [plants, setPlants] = useState([]);
+  const [sortOrder, setSortOrder] = useState('asc');
+  const [filterCategory, setFilterCategory] = useState('all');
+
+  useEffect(() => {
+    fetch('http://localhost:3000/trees_data')
+      .then(res => res.json())
+      .then(data => {
+        let filtered = [...data];
+        if (filterCategory !== 'all') {
+          filtered = filtered.filter(plant => plant.category === filterCategory);
+        }
+        if (sortOrder === 'asc') {
+          filtered.sort((a, b) => a.plantName.localeCompare(b.plantName));
+        } else {
+          filtered.sort((a, b) => b.plantName.localeCompare(a.plantName));
+        }
+        setPlants(filtered);
+      });
+  }, [sortOrder, filterCategory]);
+
+  return (
+    <section className="w-11/12 mx-auto py-10">
+      <h2 className="text-3xl font-bold text-green-700 text-center mb-6">🌿 All Plants</h2>
+
+      {/* Filter + Sort */}
+      <div className="flex flex-col md:flex-row justify-between mb-6 gap-4">
+        <div>
+          <label className="mr-2 font-semibold">Filter by Category:</label>
+          <select onChange={(e) => setFilterCategory(e.target.value)} className="border p-2 rounded">
+            <option value="all">All</option>
+            <option value="succulent">Succulent</option>
+            <option value="fern">Fern</option>
+            <option value="flowering">Flowering</option>
+          </select>
+        </div>
+
+        <div>
+          <label className="mr-2 font-semibold">Sort:</label>
+          <select onChange={(e) => setSortOrder(e.target.value)} className="border p-2 rounded">
+            <option value="asc">A → Z</option>
+            <option value="desc">Z → A</option>
+          </select>
+        </div>
+      </div>
+
+      {/* Cards */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {plants.map(plant => (
+          <div key={plant._id} className="bg-white rounded-xl shadow-md p-4">
+            <img src={plant.image} alt={plant.plantName} className="w-full h-48 object-contain rounded" />
+            <h3 className="mt-4 text-xl font-semibold">{plant.plantName}</h3>
+            <p className="text-gray-500">{plant.category}</p>
+            <Link to={`/details/${plant._id}`}>
+              <button className="mt-3 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
+                View Details
+              </button>
+            </Link>
           </div>
-        </td>
-        <td>
-          {tree.watering}
-          <br />
-          
-        </td>
-        <td>{tree.health}</td>
-        <th>
-          <button onClick={()=>navigate(`/details/${tree._id}`)} className="btn btn-primary  btn-xs">View details</button>
-        </th>
-      </tr>)
-   }
-      
-    
-    </tbody>
-        
-    </table>
-    </div>
-                </div>
-            </div>
-    );
+        ))}
+      </div>
+    </section>
+  );
 };
 
 export default AllPlants;

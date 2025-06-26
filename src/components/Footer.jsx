@@ -2,15 +2,15 @@ import React from 'react';
 
 const Footer = () => {
     return (
-    <footer className="footer footer-horizontal footer-center  p-10 mt-8">
+    <footer className="footer footer-horizontal footer-center bg-green-100 text-green-900 p-10 mt-8">
   <aside>
     
     <p >
       <span className="font-bold text-2xl text-green-800">Planting</span>
       <br />
-      Providing reliable tech since 1992
+      Providing reliable tech since 2024
     </p>
-    <p>Copyright © {new Date().getFullYear()} - All right reserved</p>
+    
   </aside>
   <nav>
     <div className="grid grid-flow-col gap-4">

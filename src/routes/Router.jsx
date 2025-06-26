@@ -12,6 +12,12 @@ import SignUp from "../pages/SignUp";
 import Details from "../components/Details";
 import PrivateRoute from "../components/PrivateRoute";
 import ErrorElement from "../components/ErrorElement";
+import AboutUs from "../pages/AboutUs/AboutUs";
+import Contact from "../pages/Contact/Contact";
+import DashboardLayout from "../pages/DashboardLayout/DashboardLayout";
+import Overview from "../components/Overview/Overview";
+import AddItem from "../pages/AddItem/AddItem";
+import MyItems from "../pages/DashboardLayout/MyItems/MyItems";
 
 export const router = createBrowserRouter([
   {
@@ -47,6 +53,20 @@ export const router = createBrowserRouter([
             </PrivateRoute>
         },
         {
+            path:'/about',
+            Component:AboutUs
+
+        },
+        {
+            path:'/contact',
+            Component:Contact
+
+        },
+       
+
+
+        
+        {
             path:'login',
             Component:Login
         },
@@ -61,6 +81,35 @@ export const router = createBrowserRouter([
         }
     ] 
   },
+
+
+  {
+  path: '/dashboard',
+  element: (
+    <PrivateRoute>
+      <DashboardLayout />
+    </PrivateRoute>
+  ),
+  children: [
+    {
+      index: true,
+      element: <Overview />
+    },
+    {
+      path: 'additem',
+      element: <AddItem />
+    },
+    {
+      path: 'myitems',
+      element: <MyItems /> 
+    },
+    {
+      path: 'allitems',
+      element: <AllPlants /> 
+    }
+  ]
+}
+
 ]);
 
  export default router
