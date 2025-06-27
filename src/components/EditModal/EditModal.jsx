@@ -27,8 +27,8 @@ const EditModal = ({ plant, onClose, onUpdate }) => {
       .then(res => res.json())
       .then(result => {
         if (result.modifiedCount > 0) {
-          onUpdate(); // Reload data in parent
-          onClose();  // Close modal
+          onUpdate();
+          onClose();  
         }
       });
   };
