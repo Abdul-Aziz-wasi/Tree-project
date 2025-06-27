@@ -7,7 +7,7 @@ const AllPlants = () => {
   const [filterCategory, setFilterCategory] = useState('all');
 
   useEffect(() => {
-    fetch('http://localhost:3000/trees_data')
+    fetch('https://mango-server-eight.vercel.app/trees_data')
       .then(res => res.json())
       .then(data => {
         let filtered = [...data];

@@ -12,7 +12,7 @@ const MyItems = () => {
 
   const fetchData = () => {
     if (user?.email) {
-      fetch(`http://localhost:3000/trees_data?email=${user.email}`)
+      fetch(`https://mango-server-eight.vercel.app/trees_data?email=${user.email}`)
         .then(res => res.json())
         .then(data => setMyPlants(data));
     }
@@ -35,7 +35,7 @@ const handleDelete = (id) => {
     confirmButtonText: 'Yes, delete it!'
   }).then((result) => {
     if (result.isConfirmed) {
-      fetch(`http://localhost:3000/trees_data/${id}`, {
+      fetch(`https://mango-server-eight.vercel.app/trees_data/${id}`, {
         method: 'DELETE',
       })
         .then(res => res.json())

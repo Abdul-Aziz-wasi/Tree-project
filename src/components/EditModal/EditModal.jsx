@@ -17,7 +17,7 @@ const EditModal = ({ plant, onClose, onUpdate }) => {
   const handleSubmit = e => {
     e.preventDefault();
 
-    fetch(`http://localhost:3000/trees_data/${plant._id}`, {
+    fetch(`https://mango-server-eight.vercel.app/trees_data/${plant._id}`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json'

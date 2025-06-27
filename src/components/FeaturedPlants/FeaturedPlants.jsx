@@ -4,7 +4,7 @@ const FeaturedPlants = () => {
   const [plants, setPlants] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/trees_data/featured') 
+    fetch('https://mango-server-eight.vercel.app/trees_data/featured') 
       .then((res) => res.json())
       .then((data) => {
         const featured = data.filter((item) => item.isFeatured === true);

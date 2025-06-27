@@ -5,7 +5,7 @@ const NewPlant = () => {
   const [newPlants, setNewPlants] = useState([]);
 
   useEffect(() => {
-    fetch('http://localhost:3000/trees_data/new')
+    fetch('https://mango-server-eight.vercel.app/trees_data/new')
       .then((res) => res.json())
       .then((data) => setNewPlants(data))
       .catch((err) => console.error('Error fetching new plants:', err));

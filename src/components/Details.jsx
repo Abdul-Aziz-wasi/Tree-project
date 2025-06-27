@@ -6,7 +6,7 @@ const Details = () => {
   const [plant, setPlant] = useState(null);
 
   useEffect(() => {
-    fetch(`http://localhost:3000/trees_data`)
+    fetch(`https://mango-server-eight.vercel.app/trees_data`)
       .then(res => res.json())
       .then(data => {
         const found = data.find(p => p._id === id);

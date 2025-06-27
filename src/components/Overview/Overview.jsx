@@ -7,7 +7,7 @@ const Overview = () => {
   const [myCount, setMyCount] = useState(0);
 
   useEffect(() => {
-    fetch('http://localhost:3000/trees_data')
+    fetch('https://mango-server-eight.vercel.app/trees_data')
       .then(res => res.json())
       .then(data => {
         setTotal(data.length);

@@ -25,7 +25,7 @@ const AddItem = () => {
       userName: user?.displayName,
     };
 
-    fetch('http://localhost:3000/trees_data', {
+    fetch('https://mango-server-eight.vercel.app/trees_data', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(newItem),
