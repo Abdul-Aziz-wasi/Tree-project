@@ -23,10 +23,13 @@ export const router = createBrowserRouter([
   {
     path: "/",
     Component:Root,
-     hydrateFallbackElement: <div className='flex items-center w-full mx-auto pt-4'><span className="loading loading-bars loading-xs"></span>
-     <span className="loading loading-bars loading-sm"></span>
-     <span className="loading loading-bars loading-md"></span>
-     </div>,
+     hydrateFallbackElement: <div className="flex items-center justify-center min-h-screen">
+    <div className="flex space-x-2">
+      <span className="loading loading-bars loading-xs text-green-600"></span>
+      <span className="loading loading-bars loading-sm text-green-600"></span>
+      <span className="loading loading-bars loading-md text-green-600"></span>
+    </div>
+  </div>,
      errorElement:<ErrorElement></ErrorElement>,
     children:[
         {
@@ -81,7 +84,8 @@ export const router = createBrowserRouter([
         }
     ] 
   },
-
+ 
+//   Dashboard route
 
   {
   path: '/dashboard',
@@ -106,7 +110,9 @@ export const router = createBrowserRouter([
     {
       path: 'allitems',
       element: <AllPlants /> 
-    }
+    },
+   
+  
   ]
 }
 

@@ -1,4 +1,5 @@
 import React from 'react';
+import { NavLink } from 'react-router';
 
 const Footer = () => {
     return (
@@ -6,15 +7,17 @@ const Footer = () => {
   <aside>
     
     <p >
-      <span className="font-bold text-2xl text-green-800">Planting</span>
+      <span className="font-bold text-2xl text-green-800">🌱 Planting</span>
       <br />
       Providing reliable tech since 2024
     </p>
+    <NavLink to='/about'>About us</NavLink>
+    <NavLink to='/contact'>Contact us</NavLink>
     
   </aside>
   <nav>
     <div className="grid grid-flow-col gap-4">
-      <a href='https://github.com/Abdul-Aziz-wasi'>
+      <a href='https://x.com/Abdul-Aziz-wasi'>
         <svg
           xmlns="http://www.w3.org/2000/svg"
           width="24"

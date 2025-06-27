@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from 'react';
 import { FaTrash, FaEdit } from 'react-icons/fa';
 import { AuthContext } from '../../../Contexts/AuthContext';
 import EditModal from '../../../components/EditModal/EditModal';
+import Swal from 'sweetalert2';
 
 
 const MyItems = () => {
@@ -21,8 +22,19 @@ const MyItems = () => {
     fetchData();
   }, [user]);
 
-  const handleDelete = (id) => {
-    if (confirm('Are you sure you want to delete this plant?')) {
+
+
+const handleDelete = (id) => {
+  Swal.fire({
+    title: 'Are you sure?',
+    text: 'You will not be able to recover this plant!',
+    icon: 'warning',
+    showCancelButton: true,
+    confirmButtonColor: '#3085d6',
+    cancelButtonColor: '#d33',
+    confirmButtonText: 'Yes, delete it!'
+  }).then((result) => {
+    if (result.isConfirmed) {
       fetch(`http://localhost:3000/trees_data/${id}`, {
         method: 'DELETE',
       })
@@ -30,14 +42,17 @@ const MyItems = () => {
         .then(result => {
           if (result.deletedCount > 0) {
             setMyPlants(prev => prev.filter(p => p._id !== id));
+            Swal.fire('Deleted!', 'The plant has been deleted.', 'success');
           }
         });
     }
-  };
+  });
+};
+
 
   return (
     <div>
-      <h2 className="text-2xl font-bold text-green-700 mb-4"> My Plants</h2>
+      <h2 className="text-2xl font-bold text-green-700 mb-4">🌿 My Plants</h2>
       <div className="overflow-x-auto bg-white rounded shadow">
         <table className="table w-full">
           <thead className="bg-green-100 text-green-700">

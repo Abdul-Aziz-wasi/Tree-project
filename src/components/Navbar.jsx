@@ -28,29 +28,28 @@ const Navbar = () => {
   return (
     <header className="sticky top-0 z-50 bg-green-100 dark:bg-gray-800 shadow-md">
       <div className="container mx-auto flex justify-between items-center px-6 py-3">
-        {/* Logo */}
+        
         <NavLink to="/" className="text-green-700 font-bold text-2xl">🌱 Planting</NavLink>
 
-        {/* Desktop Nav */}
+       
         <ul className="hidden lg:flex space-x-6 font-medium">{navLinks}</ul>
 
-        {/* Right Side Buttons */}
         <div className="flex items-center gap-4">
           
 
-          {/* User Photo */}
+        
           {user && (
             <img src={user.photoURL} alt="User" className="w-10 h-10 rounded-full lg:block" />
           )}
 
-          {/* Auth Button */}
+         
           {user ? (
             <button onClick={signOutUser} className="text-red-600 font-semibold">Logout</button>
           ) : (
             <button onClick={() => navigate('/login')} className="text-green-700 font-semibold">Login</button>
           )}
 
-          {/* Mobile Menu Button */}
+          
           <button className="lg:hidden" onClick={toggleMenu}>
             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2}
@@ -60,7 +59,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Mobile Drawer */}
+      
       {isOpen && (
         <ul className="px-6 pb-4 space-y-3 font-medium lg:hidden bg-green-50 dark:bg-gray-900">
           {navLinks}

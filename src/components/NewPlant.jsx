@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router';
 
 const NewPlant = () => {
   const [newPlants, setNewPlants] = useState([]);
@@ -26,8 +27,15 @@ const NewPlant = () => {
             />
             <h3 className="mt-4 text-xl font-semibold">{plant.plantName}</h3>
             <p className="text-gray-500">Category: {plant.category}</p>
+            <Link to={`/details/${plant._id}`}>
+                      <button className="mt-3 px-4 py-2 bg-green-600 text-white rounded hover:bg-green-700">
+                        View Details
+                      </button>
+                    </Link>
           </div>
+          
         ))}
+         
       </div>
     </section>
   );

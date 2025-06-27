@@ -1,23 +1,27 @@
 import React from 'react';
-import { useNavigate } from 'react-router';
-import Navbar from './Navbar';
+import { useNavigate } from 'react-router-dom';
+import { FaExclamationTriangle } from 'react-icons/fa';
 
 const ErrorElement = () => {
-    const navigate=useNavigate()
-    return (
-        
-       <div className='p-24'>
-        
-         <div role="alert" className="alert alert-error mt-12 ">
-  <svg xmlns="http://www.w3.org/2000/svg" className="h-50 w-50 shrink-0 stroke-current" fill="none" viewBox="0 0 24 24">
-    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M10 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2m7-2a9 9 0 11-18 0 9 9 0 0118 0z" />
-  </svg>
-  <span>Error! </span>
+  const navigate = useNavigate();
 
-  <button onClick={()=>navigate('/')} className='btn btn-primary'>Go home</button>
-</div>
-       </div>
-    );
+  return (
+    <div className="min-h-screen flex flex-col justify-center items-center bg-gray-100 p-8">
+      <FaExclamationTriangle className="text-red-500 text-6xl mb-4" />
+
+      <h1 className="text-4xl font-bold text-gray-800 mb-2">Oops! Something went wrong</h1>
+      <p className="text-lg text-gray-600 mb-6">
+        The page you're looking for doesn't exist or an unexpected error occurred.
+      </p>
+
+      <button
+        onClick={() => navigate('/')}
+        className="px-6 py-3 bg-green-600 hover:bg-green-700 text-white font-semibold rounded shadow"
+      >
+         Go Back Home
+      </button>
+    </div>
+  );
 };
 
 export default ErrorElement;

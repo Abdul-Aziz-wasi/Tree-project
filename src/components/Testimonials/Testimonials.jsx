@@ -1,6 +1,6 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Autoplay, Navigation } from 'swiper/modules'; // Swiper v10+
+import { Autoplay, Navigation } from 'swiper/modules'; 
 import 'swiper/css';
 import 'swiper/css/navigation';
 
@@ -36,7 +36,7 @@ const Testimonials = () => {
   return (
     <section className="my-16 w-11/12 mx-auto">
       <h2 className="text-3xl font-bold text-center text-green-700 mb-10">
-        ❤️ What Our Users Say
+         What Our Users Say
       </h2>
 
       <Swiper

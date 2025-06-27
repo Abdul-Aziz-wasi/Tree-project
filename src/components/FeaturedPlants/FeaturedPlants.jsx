@@ -16,7 +16,7 @@ const FeaturedPlants = () => {
   return (
     <section className="my-12 w-11/12 mx-auto">
       <h2 className="text-3xl font-bold text-green-700 text-center mb-8">
-        🌟 Featured Plants
+        🌿 Featured Plants
       </h2>
 
       {plants.length === 0 ? (
