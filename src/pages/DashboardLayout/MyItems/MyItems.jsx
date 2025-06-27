@@ -1,18 +1,24 @@
 import React, { useContext, useEffect, useState } from 'react';
-
 import { FaTrash, FaEdit } from 'react-icons/fa';
 import { AuthContext } from '../../../Contexts/AuthContext';
+import EditModal from '../../../components/EditModal/EditModal';
+
 
 const MyItems = () => {
   const { user } = useContext(AuthContext);
   const [myPlants, setMyPlants] = useState([]);
+  const [editingPlant, setEditingPlant] = useState(null); 
 
-  useEffect(() => {
+  const fetchData = () => {
     if (user?.email) {
       fetch(`http://localhost:3000/trees_data?email=${user.email}`)
         .then(res => res.json())
         .then(data => setMyPlants(data));
     }
+  };
+
+  useEffect(() => {
+    fetchData();
   }, [user]);
 
   const handleDelete = (id) => {
@@ -31,7 +37,7 @@ const MyItems = () => {
 
   return (
     <div>
-      <h2 className="text-2xl font-bold text-green-700 mb-4">🌿 My Plants</h2>
+      <h2 className="text-2xl font-bold text-green-700 mb-4"> My Plants</h2>
       <div className="overflow-x-auto bg-white rounded shadow">
         <table className="table w-full">
           <thead className="bg-green-100 text-green-700">
@@ -55,7 +61,7 @@ const MyItems = () => {
                 <td>{plant.wateringFrequency}</td>
                 <td>{plant.careLevel}</td>
                 <td className="space-x-2">
-                  <button className="text-green-600 hover:underline">
+                  <button onClick={() => setEditingPlant(plant)} className="text-green-600 hover:underline">
                     <FaEdit />
                   </button>
                   <button onClick={() => handleDelete(plant._id)} className="text-red-500 hover:underline">
@@ -72,6 +78,15 @@ const MyItems = () => {
           </tbody>
         </table>
       </div>
+
+    
+      {editingPlant && (
+        <EditModal
+          plant={editingPlant}
+          onClose={() => setEditingPlant(null)}
+          onUpdate={fetchData}
+        />
+      )}
     </div>
   );
 };
