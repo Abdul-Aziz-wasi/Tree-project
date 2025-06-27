@@ -3,10 +3,10 @@ import { NavLink, Outlet } from 'react-router-dom';
 const DashboardLayout = () => {
   return (
     <div className="flex min-h-screen">
-      {/* Sidebar */}
       <aside className="w-64 bg-green-100 p-6 space-y-4">
         <h2 className="text-xl font-bold text-green-700">Dashboard</h2>
         <ul className="space-y-2">
+            
           <li>
             <NavLink
               to="/dashboard"
@@ -51,7 +51,7 @@ const DashboardLayout = () => {
         </ul>
       </aside>
 
-      {/* Main content */}
+      
       <main className="flex-1 p-6">
         <Outlet />
       </main>
