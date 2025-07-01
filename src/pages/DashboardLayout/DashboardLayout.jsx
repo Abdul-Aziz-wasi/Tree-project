@@ -3,14 +3,14 @@ import { useState } from 'react';
 import { FaBars } from 'react-icons/fa';
 
 const DashboardLayout = () => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [Sidebar, setSidebar] = useState(false);
 
   return (
     <div className="min-h-screen flex flex-col md:flex-row">
       
       <div className="md:hidden bg-green-600 text-white p-4 flex justify-between items-center">
         <h2 className="text-lg font-bold">Dashboard</h2>
-        <button onClick={() => setIsSidebarOpen(!isSidebarOpen)} className="text-2xl">
+        <button onClick={() => setSidebar(!Sidebar)} className="text-2xl">
           <FaBars />
         </button>
       </div>
@@ -18,7 +18,7 @@ const DashboardLayout = () => {
     
       <aside
         className={`${
-          isSidebarOpen ? 'block' : 'hidden'
+          Sidebar ? 'block' : 'hidden'
         } md:block w-full md:w-64 bg-green-100 p-6 space-y-4`}
       >
         <h2 className="text-xl font-bold text-green-700 hidden md:block">Dashboard</h2>
